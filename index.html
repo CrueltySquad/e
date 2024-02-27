@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real-time Chat (Pusher)</title>
+    <title>eal-time Chat (Pusher)</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -45,7 +45,7 @@
 
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <script>
-        const pusher = new Pusher('db9f0c57abc95989bef7', {
+       const pusher = new Pusher('db9f0c57abc95989bef7', {
             cluster: 'us3',
             encrypted: true
         });
@@ -59,11 +59,12 @@
             chatWindow.scrollTop = chatWindow.scrollHeight;
         });
 
-        document.getElementById('message-form').addEventListener('submit', function(event) {
-            event.preventDefault();
+        const chatWindow = document.getElementById('chat-window');
+        const messageForm = document.getElementById('message-form');
+        const messageInput = document.getElementById('message-input');
 
-            const messageInput = document.getElementById('message-input');
-            const chatWindow = document.getElementById('chat-window');
+        messageForm.addEventListener('submit', function(event) {
+            event.preventDefault();
 
             if (messageInput.value.trim()) {
                 channel.trigger('chat-message', { message: messageInput.value });
